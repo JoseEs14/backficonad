@@ -26,12 +26,22 @@ router.get('/con/:id',(req,res)=>{
     })
 })
 
-// Trae por nombre
-//Puede que cambiemos el id por un parámetro más común como la categoría
+// Trae por nombre de proyecto
 router.get('/conn/:nombre',(req,res)=>{
     const {nombre}=req.params
     let sql = 'select * from gasto where id_proyecto = (select proyecto.id from proyecto where UPPER(nombre) LIKE UPPER(?))'
     conexion.query(sql,[nombre],(err,rows,fields)=>{
+        if(err) throw err
+        else{
+            res.json(rows)
+        }
+    })
+})
+
+router.get('/cona/:alias',(req,res)=>{
+    const {alias}=req.params
+    let sql = 'select * from gasto WHERE id_proyecto = ANY (select proyecto.id from proyecto where id_contrato = (select contrato.id from contrato where UPPER(alias) LIKE UPPER(?)))'
+    conexion.query(sql,[alias],(err,rows,fields)=>{
         if(err) throw err
         else{
             res.json(rows)
@@ -64,7 +74,7 @@ router.post('/add',(req,res)=>{
 //Puede que cambiemos el id por un parámetro más común como el concepto o la fecha incluso
 router.delete('/del/:id',(req,res)=>{
     const{id}=req.params
-    let sql =`delete from gasto where id = ('${id})'`
+    let sql =`delete from gasto where id = ('${id}')`
     conexion.query(sql,(err,rows,fields)=>{
         if(err) throw err
         else{
