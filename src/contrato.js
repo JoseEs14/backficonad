@@ -1,5 +1,5 @@
 const router = require ('express').Router()
-const conexion = require('./config/conexion')
+const conexion = require('./conexion')
 
 // Trae todos los datos
 router.get('/con',(req,res)=>{

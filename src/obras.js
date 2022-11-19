@@ -1,5 +1,5 @@
 const router = require ('express').Router()
-const conexion = require('./config/conexion')
+const conexion = require('./conexion')
 // Trae todas las obras
 router.get('/',(req,res)=>{
     let sql = 'select * from obra'
