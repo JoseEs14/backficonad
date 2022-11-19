@@ -41,7 +41,7 @@ router.post('/add',(req,res)=>{
     const{nombre}=req.body
     const{presupuesto}=req.body
     const{id_contrato}=req.body
-    let sql =`insert into proyecto(id,nombre,presupuesto,id_contrato) values ('${id}','${nombre}','${presupuesto}','${id_contrato}')`
+    let sql =`insert into proyecto(nombre,presupuesto,id_contrato) values ('${nombre}','${presupuesto}','${id_contrato}')`
     conexion.query(sql,(err,rows,fields)=>{
         if(err) throw err
         else{
