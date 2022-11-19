@@ -1,5 +1,5 @@
 const mysql = require('mysql')
-const conexion = mysql.createConnection({
+const conexion = mysql.createPool({
     host: process.env.DB_HOST || 'localhost',
     user: process.env.DB_USER || 'root',
     password: process.env.DB_PASSWORD || '',
@@ -7,12 +7,5 @@ const conexion = mysql.createConnection({
     database: process.env.DB_NAME || 'constructora'
 });
 
-conexion.connect((err) => {
-    if (err) {
-        console.log('Ha ocurrido un error en la BD ' + err);
-    } else {
-        console.log('Conexion exitosa')
-    }
-})
 
 module.exports = conexion;
