@@ -3,10 +3,11 @@ require('./conexion')
 const express = require('express');
 
 const PORT = process.env.PORT || 3000
-
+const cors = require('cors');
 const app = express();
 //admitir tipos de dato
 app.use(express.json())
+app.use(cors());
 
 app.set('port',PORT)
 
